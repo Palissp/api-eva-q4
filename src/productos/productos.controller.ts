@@ -11,9 +11,9 @@ import { Request } from 'express';
 import { ApiTags } from '@nestjs/swagger';
 import { CatalogoConst } from './const/catalogo.const';
 
-@ApiTags('Catalogo')
-@Controller('catalogo')
-export class CatalogoController {
+@ApiTags('Productos')
+@Controller('productos')
+export class ProductosController {
   constructor() {}
 
   @Get()
