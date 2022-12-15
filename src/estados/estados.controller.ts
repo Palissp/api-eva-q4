@@ -11,7 +11,7 @@ import { ApiTags } from '@nestjs/swagger';
 import {
   CantonesEcuador,
   ProvinciasEcuador,
-} from '../catalogo/const/ecuador.const';
+} from '../productos/const/ecuador.const';
 
 @ApiTags('Estado')
 @Controller('estado')
@@ -29,6 +29,24 @@ export class EstadosController {
     if (!cantones) {
       throw new HttpException('Not found', HttpStatus.NOT_FOUND);
     }
-    return cantones;
+    return this.parseArray(cantones);
+  }
+
+  parseArray(cantonesFiltered: { id; cantones }): Array<{ id; canton }> {
+    return cantonesFiltered.cantones.map((canton: string) => {
+      return {
+        id: this.encodeName(canton),
+        canton: canton,
+      };
+    });
+  }
+
+  encodeName(cantonName: string): string {
+    const canton = cantonName.replace(/ /g, '');
+    return (
+      canton[0] +
+      canton[Math.round(canton.length / 2)] +
+      canton[canton.length - 1]
+    );
   }
 }

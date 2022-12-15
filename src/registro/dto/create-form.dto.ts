@@ -1,4 +1,4 @@
-import { Form } from '../../catalogo/interfaces/form';
+import { Form } from '../../productos/interfaces/form';
 import {IsArray, IsString, IsNotEmpty, IsBoolean, MinLength, MaxLength, IsEmail, IsPhoneNumber} from 'class-validator';
 
 type CreateForm = Omit<Form, 'id'>;
